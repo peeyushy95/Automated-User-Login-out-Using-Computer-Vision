@@ -1,11 +1,11 @@
-__author__ = 'pyadav'
+__author__ = 'peeyush yadav'
 
 import cv2
 import ctypes 
 import time
 import platform
 #from clarifaiClientSetup import predictUserAvailable  #Required, if using Clarifai API 
-from faceRecognition import recognise_face
+from faceRecognition import recognise_face,recognise_face_continuous
 
 integrated_webCam_port = 0
 throw_frames = 50   #Number of frames to throw away while the camera adjusts to light levels
@@ -17,7 +17,6 @@ def capture_image():
     for i in range(throw_frames):
         returnval, image = camera.read() #PIL format , if returnval = true then success
     camera.release();                                  # Release Camera Object
-    print(image)
     return image
 
 def checkUser_available_fixedInterval(sleep_time):
@@ -41,6 +40,8 @@ def checkUser_available_fixedInterval(sleep_time):
             
 def checkUser_available_continuous():   
     camera = cv2.VideoCapture(integrated_webCam_port) #initialise Camera Object
+    recognise_face_continuous(camera)
+    del(camera)
     
         
 def find_OS_toLock():
@@ -58,8 +59,8 @@ def release_Camera():
     del(camera)
         
 if __name__ == "__main__":
-    
-    sleep_time = 2  
+    print("Uncomment imshow in faceRecognition")
+    sleep_time = 3  
     #release_Camera() # FIx : Run this function if camera doesnt turn off.
-    checkUser_available_continuous()
+    #checkUser_available_continuous()
     checkUser_available_fixedInterval(sleep_time)
