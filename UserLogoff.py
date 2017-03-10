@@ -5,14 +5,15 @@ import ctypes
 import time
 import platform
 #from clarifaiClientSetup import predictUserAvailable  #Required, if using Clarifai API 
-from faceRecognition import recognise_face,recognise_face_continuous
+from faceRecognition import recognise_face
 
 integrated_webCam_port = 0
 throw_frames = 50   #Number of frames to throw away while the camera adjusts to light levels
-file = "C:/Users/pyadav/Desktop/A/Learning/test_image.jpg"
+file = "test_image.jpg"
 
 
 def capture_image():
+    
     camera = cv2.VideoCapture(integrated_webCam_port) #initialise Camera Object
     for i in range(throw_frames):
         returnval, image = camera.read() #PIL format , if returnval = true then success
@@ -32,35 +33,35 @@ def checkUser_available_fixedInterval(sleep_time):
         if(predictUserAvailable(file)== False):
         '''    
         if( recognise_face(captured_image) == False):
-            print("User Not Available")
+            print("User Not Available\n")
             find_OS_toLock()
             break;
         else:
-            print("User Available")
+            print("User Available\n")
             
-def checkUser_available_continuous():   
-    camera = cv2.VideoCapture(integrated_webCam_port) #initialise Camera Object
-    recognise_face_continuous(camera)
-    del(camera)
-    
-        
+            
 def find_OS_toLock():
+    
     os_type = platform.system()
+    
     if(os_type == 'Windows'):
+        
         user32 = ctypes.cdll.LoadLibrary("user32.dll") 
         user32.LockWorkStation()
     elif (os_type == 'Darwin') :
-        #do Nothing
+        
+        #To do
         os_type = 'Darwin'
 
  
 def release_Camera():
+    
     camera = cv2.VideoCapture(0) #initialise Camera Object       
     del(camera)
         
 if __name__ == "__main__":
-    print("Uncomment imshow in faceRecognition")
-    sleep_time = 3  
-    #release_Camera() # FIx : Run this function if camera doesnt turn off.
-    #checkUser_available_continuous()
+    
+    print("Uncomment imshow in faceRecognition.py to see images")
+    sleep_time = 3 
+    #release_Camera() # Fix : Run this function if camera doesnt turn off.
     checkUser_available_fixedInterval(sleep_time)

@@ -5,13 +5,14 @@ Created on Sun Mar  5 00:37:14 2017
 @author: pyadav
 """
 
-from clarifai import rest
 from clarifai.rest import ClarifaiApp
 from clarifai.rest import Image as ClImage
-import ctypes 
-print(Enter your Clarifai id and Secret KEy" )
-CLARIFAI_APP_ID = "j2YUSmHm9mdHrmkyyMSCFpSCw1IIx3zklh11gBdb"
-CLARIFAI_APP_SECRET = "LVGCwYY5eD-v7SvADRNj3_Zfxf9WPtNJ93k4XsH8"
+
+
+print("Enter your Clarifai id and Secret Key" )
+
+CLARIFAI_APP_ID = ""
+CLARIFAI_APP_SECRET = ""
 CELEBRITY_MODEL = "e466caa0619f444ab97497640cefc4dc"
 # APi Setup
 app = ClarifaiApp( CLARIFAI_APP_ID, CLARIFAI_APP_SECRET);
