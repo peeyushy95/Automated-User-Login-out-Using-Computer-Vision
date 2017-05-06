@@ -7,7 +7,7 @@ Created on Sun Mar  5 00:37:14 2017
 import cv2
 
 print("Warning ---> Change File and Cascade Path if code is not working")
-cascadePath = "C:/Anaconda2/envs/py35/Library/etc/haarcascades/haarcascade_frontalface_default.xml"
+cascadePath = "haarcascade_frontalface_default.xml"
 
 # Create the haar cascade
 faceCascade = cv2.CascadeClassifier(cascadePath)
