@@ -6,7 +6,6 @@ Created on Sun Mar  5 00:37:14 2017
 """
 import cv2
 
-print("Warning ---> Change File and Cascade Path if code is not working")
 cascadePath = "haarcascade_frontalface_default.xml"
 
 # Create the haar cascade
@@ -31,9 +30,9 @@ def recognise_face(image):
     for (x, y, w, h) in faces:
         cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2)
     
-    #cv2.imshow("Faces found" ,image)
-    #cv2.waitKey(0)
-    #cv2.destroyAllWindows()
+    cv2.imshow("Faces found" ,image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
     
     if (len(faces) > 0 ):
         return True
