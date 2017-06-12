@@ -5,8 +5,7 @@ import ctypes
 import time
 import platform
 #from clarifaiClientSetup import predictUserAvailable  #Required, if using Clarifai API 
-from faceRecognition import recognise_face
-
+from faceRecognition import *
 integrated_webCam_port = 0
 throw_frames = 50   #Number of frames to throw away while the camera adjusts to light levels
 file = "test_image.jpg"
@@ -44,12 +43,10 @@ def find_OS_toLock():
     
     os_type = platform.system()
     
-    if(os_type == 'Windows'):
-        
+    if(os_type == 'Windows'):        
         user32 = ctypes.cdll.LoadLibrary("user32.dll") 
         user32.LockWorkStation()
-    elif (os_type == 'Darwin') :
-        
+    elif (os_type == 'Darwin') :        
         #To do
         os_type = 'Darwin'
 
@@ -62,6 +59,8 @@ def release_Camera():
 if __name__ == "__main__":
     
     print("Uncomment imshow in faceRecognition.py to see images")
-    sleep_time = 3 
+    sleep_time = 3
+    #image_process("images")
+    train_model("images")
     #release_Camera() # Fix : Run this function if camera doesnt turn off.
     checkUser_available_fixedInterval(sleep_time)
