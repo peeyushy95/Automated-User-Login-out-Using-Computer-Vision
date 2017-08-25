@@ -5,7 +5,6 @@ import cv2
 import ctypes 
 import time
 import platform
-#from clarifaiClientSetup import predictUserAvailable  #Required, if using Clarifai API 
 from faceRecognition import *
 integrated_webCam_port = 0
 throw_frames = 50   #Number of frames to throw away while the camera adjusts to light levels
@@ -40,6 +39,7 @@ def checkUser_available_fixedInterval(sleep_time):
         else:
             if(logged_in == False):
                 find_OS_toUnlock()
+                logged_in = True
             print("User Available\n")
 
 def find_OS_toUnlock():    
