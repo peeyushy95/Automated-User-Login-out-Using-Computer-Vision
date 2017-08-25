@@ -1,5 +1,6 @@
 __author__ = 'peeyush yadav'
 
+import os
 import cv2
 import ctypes 
 import time
@@ -46,9 +47,8 @@ def find_OS_toLock():
     if(os_type == 'Windows'):        
         user32 = ctypes.cdll.LoadLibrary("user32.dll") 
         user32.LockWorkStation()
-    elif (os_type == 'Darwin') :        
-        #To do
-        os_type = 'Darwin'
+    elif (os_type == 'Darwin') :
+        os.system("""osascript -e 'tell application id "com.apple.ScreenSaver.Engine" to launch'""")
 
  
 def release_Camera():
