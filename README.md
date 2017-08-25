@@ -6,5 +6,5 @@ SETUP Requirements :
 3) Tensorflow
 
 Note: 
-  Create Images folder and put images for training. Extension of image will be the label.
-  add password in macLogin file.
+1) Create Images folder and put images for training. Extension of image will be the label.
+2) Add password in macLogin file.
