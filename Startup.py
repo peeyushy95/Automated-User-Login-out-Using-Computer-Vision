@@ -21,7 +21,7 @@ def capture_image():
     return image
 
 def checkUser_available_fixedInterval(sleep_time):
-        
+    logged_in = True    
     while True :
         time.sleep(sleep_time)
         captured_image = capture_image()
@@ -34,12 +34,23 @@ def checkUser_available_fixedInterval(sleep_time):
         '''    
         if( recognise_face(captured_image) == False):
             print("User Not Available\n")
+            logged_in = False
             find_OS_toLock()
             break;
         else:
+            if(logged_in == False):
+                find_OS_toUnlock()
             print("User Available\n")
-            
-            
+
+def find_OS_toUnlock():    
+    os_type = platform.system()
+    
+    if(os_type == 'Windows'): 
+        print("To Do")
+        #To Do
+    elif (os_type == 'Darwin') :
+        os.system("osascript macLogin.scpt")
+                        
 def find_OS_toLock():
     
     os_type = platform.system()
