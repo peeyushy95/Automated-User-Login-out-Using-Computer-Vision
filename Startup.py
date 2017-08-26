@@ -12,16 +12,16 @@ file = "test_image.jpg"
 
 
 def capture_image():
-    
-    camera = cv2.VideoCapture(integrated_webCam_port) #initialise Camera Object
+    camera = cv2.VideoCapture(integrated_webCam_port)
+    #initialise Camera Object
     for i in range(throw_frames):
         returnval, image = camera.read() #PIL format , if returnval = true then success
-    camera.release();                                  # Release Camera Object
+    camera.release()                                # Release Camera Object
     return image
 
 def checkUser_available_fixedInterval(sleep_time):
-    logged_in = True    
-    while True :
+    logged_in = True   
+    while True:
         time.sleep(sleep_time)
         captured_image = capture_image()
         print("Captured Image")
@@ -35,12 +35,12 @@ def checkUser_available_fixedInterval(sleep_time):
             print("User Not Available\n")
             logged_in = False
             find_OS_toLock()
-            break;
         else:
             if(logged_in == False):
                 find_OS_toUnlock()
                 logged_in = True
             print("User Available\n")
+        
 
 def find_OS_toUnlock():    
     os_type = platform.system()
@@ -68,10 +68,9 @@ def release_Camera():
     del(camera)
         
 if __name__ == "__main__":
-    
     print("Uncomment imshow in faceRecognition.py to see images")
-    sleep_time = 3
-    #image_process("images")
+    sleep_time = 5
+    #image_process("raw_images")
     train_model("images")
     #release_Camera() # Fix : Run this function if camera doesnt turn off.
     checkUser_available_fixedInterval(sleep_time)
